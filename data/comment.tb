@@ -1,0 +1,6 @@
+REM This file tests the comments are ignored
+
+REM ignored comment
+PRINT 1 + 1
+REM ignored again
+PRINT "DONE"

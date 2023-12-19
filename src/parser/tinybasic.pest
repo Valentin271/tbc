@@ -1,0 +1,72 @@
+NEWLINE = { "\n" }
+WHITESPACE = _{ " " }
+rem = _{ "REM" ~ (!NEWLINE ~ ASCII)* ~ NEWLINE }
+
+
+// Keywords
+print = { "PRINT" }
+if = { "IF" }
+else = { "ELSE" }
+goto = { "GOTO" }
+input = { "INPUT" }
+let = { "LET" }
+gosub = { "GOSUB" }
+return = { "RETURN" }
+end = { "END" }
+
+
+// RELOP
+eq = { "==" }
+ne = { "<>" | "><"}
+ge = { ">=" }
+gt = { ">" }
+le = { "<=" }
+lt = { "<" }
+relop = { eq | ne | ge | gt | le | lt }
+
+
+// OP
+add = { "+" }
+sub = { "-" }
+mul = { "*" }
+div = { "/" }
+
+
+// LITERALS
+number = { ASCII_DIGIT+ ~ ("." ~ ASCII_DIGIT)? }
+string = { "\"" ~ (!"\"" ~ ASCII)* ~ "\"" }
+
+ident = { ("_" | ASCII_ALPHA) ~ ( "_" | ASCII_ALPHANUMERIC )* }
+
+
+// ARITHMETICS
+// Operator precedence is not defined in the grammar because this is not possible with pest.
+// Operator precedence is handled in the code with the pratt parser.
+// See mainly https://github.com/pest-parser/pest/issues/386
+expr = { arexpr | string }
+
+arexpr = { operand ~ (add | sub | mul | div | operand)* }
+operand = _{
+    number
+    | "(" ~ arexpr ~ ")"
+    | ident
+}
+
+// COND
+cond = { (number | ident) ~ relop ~ (number | ident) }
+
+
+// LANGUAGE
+stmt = {
+    print ~ expr
+    | if ~ cond ~ "THEN" ~ stmt ~ (else ~ stmt)?
+    | goto ~ arexpr
+    | gosub ~ arexpr
+    | input ~ ident
+    | let ~ ident ~ "=" ~ arexpr
+    | return
+    | end
+}
+
+line = { number? ~ stmt? ~ NEWLINE }
+file = { SOI ~ (line | rem)* ~ EOI }

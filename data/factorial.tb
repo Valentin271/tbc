@@ -1,0 +1,20 @@
+REM Computes the factorial of a given number
+REM
+REM Once compiled, type `echo -n "5" | dump.elf`
+REM Otherwise INPUT also captures `\n`
+REM Also, INPUT only supports one digit, so 9 is the maximum
+REM
+REM Alternatively, use the commented LET to set higher numbers
+REM Factorial grow very quickly and will quickly overflow a 64bits integer
+
+REM LET a = 5
+INPUT a
+LET r = 1
+
+GOTO 50
+30 LET r = r * a
+LET a = a - 1
+50 IF a > 0 THEN GOTO 30
+
+PRINT r
+PRINT "\n"

@@ -1,0 +1,11 @@
+REM This file tests out multiple variable, using them, interchanging them ...
+
+LET toto = 3 +5
+PRINT toto
+PRINT "\n"
+
+LET titi = toto + 2
+PRINT titi
+PRINT "\n"
+PRINT toto
+PRINT "\n"

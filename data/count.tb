@@ -1,0 +1,10 @@
+REM A simple program that counts up to 1000000000, see the C program as comparison
+
+LET i = 0
+
+GOTO 40
+30 LET i = i + 1
+40 IF i < 1000000000 THEN GOTO 30
+
+PRINT i
+PRINT "\n"

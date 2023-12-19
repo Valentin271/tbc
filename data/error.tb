@@ -1,0 +1,4 @@
+REM Tests error reporting
+
+10 PRINT "TOTO"
+10 PRINT TOTO"

@@ -1,0 +1,17 @@
+[package]
+name = "tbc"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+argh = "0.1.12"
+pest = "2.7.4"
+pest_derive = "2.7.4"
+tiny-elf = { version = "0.1.0", features = ["asm"], git = "https://github.com/Valentin271/tiny-elf/" }
+
+[profile.release]
+lto = true
+opt-level = 3
+strip = true

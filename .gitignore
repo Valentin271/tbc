@@ -1,0 +1,10 @@
+/target
+
+*.asm
+*.bin
+*.elf
+*.dot
+/*.dot.svg
+*.pdf
+*.o
+*.out

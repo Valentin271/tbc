@@ -1,0 +1,22 @@
+REM This file demonstrate how much can be stripped by optimizations
+
+REM reduced to print 10
+PRINT 1 + 2 + 3 + 4
+PRINT "\n"
+
+REM same with multiplication, division, subtraction ..
+REM this is actually just 5
+PRINT (3*(1 - 2 + 3 * 2 - 1 * 2) + 1 ) /2
+PRINT "\n"
+
+REM same but on a let statement
+LET i = 1 + 2 + 3 + 4
+
+REM else and condition are elided, letting only then
+IF 1 <= 2 THEN PRINT "lower\n" ELSE PRINT "greater\n"
+
+REM condition is elided, letting only then
+IF 1 <= 2 THEN PRINT "lower\n"
+
+REM statement is always false and no else, this is completely removed
+IF 4 <= 2 THEN PRINT "lower\n"

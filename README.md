@@ -47,6 +47,9 @@ and as such, an expression can be a variable. Strings cannot appear in an arithm
 NOTE 2: A condition is of the form `<operand> <relop> <operand>` where `<relop>` is a relational
 operator and `<operand>` can be a number or a variable, it **cannot** be an expression.
 
+NOTE 3: `INPUT` must really receive one and only one character. This means inputting from the
+command line will not work as it also records a `\n`. Instead you can use `echo -n "5" | dump.elf`
+
 ## Optimizations
 
 Assembly optimizations can be seen in [`optimize.rs`](src/optimize.rs). It is mostly converting
